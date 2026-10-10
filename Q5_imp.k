@@ -1,6 +1,6 @@
 // Copyright (c) Runtime Verification, Inc. All Rights Reserved.
 
-module IMP-SYNTAX
+module Q5_IMP-SYNTAX
   imports DOMAINS-SYNTAX
   syntax AExp  ::= Int | String | Id
                  | "++" Id
@@ -35,8 +35,8 @@ module IMP-SYNTAX
 endmodule
 
 
-module IMP
-  imports IMP-SYNTAX
+module Q5_IMP
+  imports Q5_IMP-SYNTAX
   imports DOMAINS
   syntax KResult ::= Int | Bool | String
 

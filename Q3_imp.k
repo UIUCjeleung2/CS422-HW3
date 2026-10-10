@@ -1,6 +1,6 @@
 // Copyright (c) Runtime Verification, Inc. All Rights Reserved.
 
-module IMP-SYNTAX
+module Q3_IMP-SYNTAX
   imports DOMAINS-SYNTAX
   syntax AExp  ::= Int | Id
                  | "-" Int
@@ -28,8 +28,8 @@ module IMP-SYNTAX
 endmodule
 
 
-module IMP
-  imports IMP-SYNTAX
+module Q3_IMP
+  imports Q3_IMP-SYNTAX
   imports DOMAINS
   syntax KResult ::= Int | Bool | EmptyStatement
 

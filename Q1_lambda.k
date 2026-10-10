@@ -1,6 +1,6 @@
 
 
-module LAMBDA-SYNTAX
+module Q1_LAMBDA-SYNTAX
     imports DOMAINS-SYNTAX
 
     syntax Val ::= Id | "lambda" Id "." Exp
@@ -13,6 +13,7 @@ module LAMBDA-SYNTAX
                 | Exp "/" Exp   [strict]
                 > Exp "+" Exp   [strict, left]
                 > Exp "<=" Exp  [strict]
+                > Exp "==" Exp  [strict]
                 > left: "if" Exp "then" Exp "else" Exp   [strict(1)]
                 > left: "let" Id "=" Exp "in" Exp        [macro]
                     > left: "letrec" Id Id "=" Exp "in" Exp [macro]
@@ -27,8 +28,8 @@ module LAMBDA-SYNTAX
     syntax Id ::= "f" [token] | "x" [token] | "v" [token]
 endmodule
 
-module LAMBDA
-    imports LAMBDA-SYNTAX
+module Q1_LAMBDA
+    imports Q1_LAMBDA-SYNTAX
     imports DOMAINS
 
     // freeVars(Exp) returns a set of something
@@ -90,6 +91,7 @@ module LAMBDA
     rule (E1:Exp / E2:Exp)  [V / X] => E1[V/X] /  (E2[V/X])
     rule (E1:Exp + E2:Exp)  [V / X] => E1[V/X] +  (E2[V/X])
     rule (E1:Exp <= E2:Exp) [V / X] => E1[V/X] <= (E2[V/X])
+    rule (E1:Exp == E2:Exp) [V / X] => E1[V/X] == (E2[V/X])
 
     rule (if C then E1 else E2) [V / X] => if C[V/X] then E1[V/X] else (E2[V/X])
 
@@ -106,6 +108,7 @@ module LAMBDA
     rule I1 / I2 => I1 /Int I2
     rule I1 + I2 => I1 +Int I2
     rule I1 <= I2 => I1 <=Int I2
+    rule I1 == I2 => I1 ==Int I2
     
     // IF THEN ELSE
     rule if true then E else _ => E

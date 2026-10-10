@@ -1,0 +1,2 @@
+letrec collatz_steps x = if x <= 1 then 0 else (if x == (2 * (x / 2)) then (1 + (collatz_steps(x / 2))) else (1 + (collatz_steps((3 * x) + 1)))) 
+in (collatz_steps 27)
